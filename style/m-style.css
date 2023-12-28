@@ -1,0 +1,98 @@
+/** ipad **/
+@media (max-width: 1000px) , screen and (max-device-width : 1000px){
+	body{
+		/*margin: auto 20px;*/
+	}
+}
+
+/*mobile styling*/
+/*@media only screen and (min-width: 300px) and (max-width: 414px) and (max-device-width : 414px) {*/
+/*(max-device-width : 414px) and (orientation: portrait)*/
+@media (max-width: 414px) , screen and (max-device-width : 414px){
+    .header{
+    	padding:  18px 16px;
+    }
+    .footer{
+    	margin-bottom: 64px;
+    }
+    .floatmenu{
+    	display: none;
+	    position: fixed;
+	    margin-top: 0px;
+	    top: 68px;
+	    z-index: 10;
+	    right: 0;
+	    left: 0;
+    }
+	.container-flex .row{
+		width: auto;
+	}
+    .hello{
+    	/*margin-top: 132px;*/
+    }
+    .pdnone{
+    	padding: 0 24px;
+    }
+	.experiences{
+		margin-top: 20px;
+	}
+    .menuimg{
+    	
+    } 
+	.project_i2 .pheading{
+		line-height: 32px;
+	}
+	.reachout{
+		line-height: 28px;
+	}
+	.content-heading {
+		line-height: 32px;
+	}
+    .webmenu{
+		display: none;
+	}
+	.mobilemenu{
+		display: block;
+	}
+	.mobile-no-need{
+		display: none;
+	}
+	.mobile-need{
+		display: block;
+	}
+	.mobile-abt{
+		display: block;
+	}
+	.fcom{
+		margin-top: 16px;
+	}
+	.csimgcontainer{
+		width: 95%;
+		margin: 0px 2.5%; 
+	}
+	.casestudy-main-cont{
+		/*margin-top: 32px;*/
+	}
+
+	.password-holder{
+		margin-top: 25%;
+	}
+	
+	.password-holder img{
+		width: 30%;
+	}
+
+	.content-prohibit{
+		margin-top: 24px;
+		color: #333;
+		font-family: Inter;
+		font-size: 25px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+	}
+
+	.password-form .passcode{
+		width: 70%;
+	}
+}
