@@ -19,41 +19,63 @@
 <link rel="stylesheet" type="text/css" href="./style/m-style.css" />
 <link rel="stylesheet" type="text/css" href="./style/loader.css" />
 
-<script type="text/javascript" src="./js/app2.js"></script>
+<script type="text/javascript" src="./js/app.js"></script>
+
 
 </head>
-<body onload="bodyLoad()" >
+<body onload="bodyLoad()">
 	<div id="loading_holder" class="loading_holder">
 		<img  src='./svg/name.svg' />
 		<br />
-		<!--http://jsfiddle.net/z84yd0to/2/-->
 		<div class="loading-icon">
 		    <div class="rect rect1"></div>
 		    <div class="rect rect2"></div>
 		    <div class="rect rect3"></div>
 		</div>
 	</div>
-
 	<div class='body' style='display: none;'>
-		<div class="password-holder">
-			<div><img src="./svg/lock.svg" /></div>
-		
-			<div class="content-prohibit">
-				This content is prohibited
+		<div class='clearfix'></div>
+		<div class='quote container-flex pdnone'>
+			<div class='row fline_quote'>
+				<div class='col-lg-3'></div>
+				<div class='col-lg-8'>
+					<img src='./svg/openquote.svg' class='quotesvg' />
+							Design is not just what it looks like and feels like. Design is how it works.
+					<img src='./svg/closequote.svg' class='quotesvg' />
+					<br/>
+					<div class='by_author'>- Steve Jobs</div>
+				</div>
+				<div class='col-lg-3'></div>
 			</div>
-			<div class="content-prohibit-2">
-				To view this page, please enter the password
-			</div>
-		
-			<div class="password-form">
-				<div class="password-input-holder" style="display: inline-block;">
-						<input type="password" class="passcode" name="passcode" autofocus onfocus="formFocus()" placeholder="Enter password" />
-						<button name="form-submit" onclick="formValidate()" ">
-							<div class="submit-btn-text">Submit</div>
-						</button>
-						<br><div class='error_msg'>Password is incorrect</div>
+		</div>
+		<div class='container-flex pdnone'>
+			<div class='row'>
+				<div class='col-xl-1 col-lg-1'></div>
+				<div class='col-xl-10 col-lg-10'>
+					<div class="container-flex abtcontainer">
+						<div class='row'>
+							<div class="col-md-7 abtitems">
+								<div class='about mobile-no-need'>About</div>
+								<div class='description'>
+									Hello, I'm Manoj Shakar, a Self-taught product designer who is passionate about creating beautiful and functional user-friendly products. Currently, crafting user experience at <a href='https://www.vajro.com/' target="_blank">Vajro</a>,  previously at <a href='https://www.freshworks.com/' target="_blank">Freshworks </a> & <a href='https://www.trimble.com' target="_blank">Trimble</a>.
+									<br /><br/>
+									My passion gives me the desire to excel and continuously improve in my line of work. I identify the user problems and solve them by providing a better experience that is as aesthetically pleasing as functional.
+
+									<br/><br/>I also love (re)creating <a href='https://www.instagram.com/manoj.designs/' target="blank">brand logos</a> that would be far more creative and meaningful to their target audience.
+ 
+									<br /><br/>When I am not at my desk, you can always find me traveling to new places, meeting new people, and <a href='https://www.instagram.com/manoj.clicks/' target="blank">capturing moments</a> of my life with my camera.
+								</div>
+							</div>
+							<div class="col-md-5 order-first order-md-last abtitems">
+								<div class='about mobile-abt'>About</div>
+								<img alt='' src='./images/profile.jpeg' class='img-fluid wt100' />
+						</div>
+						</div>
+					</div>
+					<div class='footer'>
 					</div>
 				</div>
+				<div class='col-xl-1 col-lg-1'></div>
 			</div>
 		</div>
 	</div>
