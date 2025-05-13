@@ -2,6 +2,15 @@ var index_page = "index.html"
 var about_page = "about.html"
 var projects_page = "projects.html"
 
+var htmlLinks = [
+    { link: "casestudy1.html", description: "Creating Consistency: Designing a Unified Web Experience for Cookd Users" },
+    { link: "casestudy1 copy.html", description: "From Gaps to Greatness: A UX Transformation of Vajro’s Digital Experience" },
+    { link: "casestudy2.html", description: "2 During the time period before 2015, Zoho CRM offered only some restricted list of APIs in a non-standard way (i.e. no standard API URI structure, different type of responses" },
+    { link: "casestudy2 copy.html", description: "[COPY] 2 casestudy2 copy.html" },
+    { link: "casestudy3.html", description: "3 During the time period before 2015, Zoho CRM offered only some restricted list of APIs in a non-standard way (i.e. no standard API URI structure, different type of responses" },
+    { link: "casestudy3 copy.html", description: "[COPY] 3 During the time period before 2015, Zoho CRM offered only some restricted list of APIs in a non-standard way (i.e. no standard API URI structure, different type of responses" },
+];
+
 var password_form_content = `
 <div class="password-holder">
 	<div><img src="./svg/lock.svg" /></div>
@@ -49,6 +58,103 @@ function isCaseStudyPage(){
 	return new RegExp('^case[a-zA-Z0-9% ]{0,30}.html').test(html_name)
 }
 
+function trackVisitedPages() {
+    var currentPage = window.location.href.split("/").pop();
+    var visitCounts = JSON.parse(sessionStorage.getItem("visitCounts")) || {};
+
+    // Increment visit count for the current page
+    visitCounts[currentPage] = (visitCounts[currentPage] || 0) + 1;
+    sessionStorage.setItem("visitCounts", JSON.stringify(visitCounts));
+}
+
+function proposeLinks() {
+    var visitCounts = JSON.parse(sessionStorage.getItem("visitCounts")) || {};
+    var currentPage = window.location.href.split("/").pop();
+
+    // Normalize currentPage to ensure it matches the format in htmlLinks
+    currentPage = decodeURIComponent(currentPage);
+
+    // Filter out the current page from the unvisited and least visited pages
+    var unvisitedPages = htmlLinks.filter(linkObj => {
+        var normalizedLink = decodeURIComponent(linkObj.link); // Normalize link for comparison
+        return !(normalizedLink in visitCounts) && normalizedLink !== currentPage;
+    });
+
+    if (unvisitedPages.length >= 2) {
+        return unvisitedPages.slice(0, 2); // Propose the first two unvisited pages
+    } else if (unvisitedPages.length === 1) {
+        return [unvisitedPages[0], getLeastVisitedPage(visitCounts, currentPage)]; // Propose one unvisited and one least visited page
+    } else {
+        // All pages visited, propose the two least visited pages excluding the current page
+        return getLeastVisitedPages(visitCounts, 2, currentPage);
+    }
+}
+
+// Helper function to get the least visited page excluding the current page
+function getLeastVisitedPage(visitCounts, currentPage) {
+    var leastVisitedLink = Object.keys(visitCounts)
+        .filter(link => link !== currentPage) // Exclude the current page
+        .reduce((a, b) => visitCounts[a] < visitCounts[b] ? a : b, null);
+    return htmlLinks.find(linkObj => linkObj.link === leastVisitedLink);
+}
+
+// Helper function to get the least visited pages excluding the current page
+function getLeastVisitedPages(visitCounts, count, currentPage) {
+    return Object.entries(visitCounts)
+        .filter(entry => entry[0] !== currentPage) // Exclude the current page
+        .sort((a, b) => a[1] - b[1]) // Sort by visit count (ascending)
+        .slice(0, count) // Take the first 'count' entries
+        .map(entry => htmlLinks.find(linkObj => linkObj.link === entry[0])); // Map to link objects
+}
+
+function setProjectLinks() {
+    var proposedLinks = proposeLinks(); // Get the proposed links
+    var projectLinksDiv = document.querySelector(".project-links");
+
+    // Clear existing content
+    projectLinksDiv.innerHTML = "";
+
+    // Dynamically create project cards for proposed links
+    proposedLinks.forEach((linkObj, index) => {
+        var projectCard = document.createElement("div");
+        projectCard.className = "project-card";
+
+        if (index === 0) {
+            // Left project card
+            projectCard.innerHTML = `
+                <div class="project-card-left-arrow">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 12L18 24L30 36" stroke="#333333" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="project-card-title project-card-title-left" title="${linkObj.description}">
+                    ${linkObj.description}
+                </div>
+            `;
+        } else if (index === 1) {
+            // Right project card
+            projectCard.innerHTML = `
+                <div class="project-card-title project-card-title-right" title="${linkObj.description}">
+                    ${linkObj.description}
+                </div>
+                <div class="project-card-right-arrow">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 36L30 24L18 12" stroke="#333333" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            `;
+        }
+
+        // Add click event listener to navigate to the link
+        projectCard.addEventListener("click", function () {
+            window.location.href = linkObj.link; // Navigate to the corresponding link
+        });
+
+        // Append the project card to the project links div
+        projectLinksDiv.appendChild(projectCard);
+    });
+}
+
 function toggle_menu(){
 	
 	var burger_svg = $(".burger-svg").css('display')
@@ -66,7 +172,6 @@ function toggle_menu(){
 
 function preloadStuffs(){
 
-
 	if(!(isIndexPage() || isAboutPage())){
 		window.addEventListener("scroll", function(){
 			var top_y = window.scrollY
@@ -83,8 +188,20 @@ function preloadStuffs(){
 		$('.b2home').css("display","none")
 		$(".b2projects").css("display","block")
 	}else if(isCaseStudyPage()){
-		$('.b2home').css("display","block")
+		//$('.b2home').css("display","block")
 		$(".b2projects").css("display","none")
+	}
+
+	if(isCaseStudyPage()){
+		trackVisitedPages();
+		var proposedLinks = proposeLinks();
+		console.log("Proposed Links:", proposedLinks);
+
+		proposedLinks.forEach(linkObj => {
+			console.log(`Suggested Link: ${linkObj.link} (${linkObj.description})`);
+		});
+
+		setProjectLinks();
 	}
 
 	$('img').each(function(){
@@ -212,7 +329,7 @@ function formValidate(){
 	var htmlfile = location.href.split("/").slice(-1)[0]
 
 	$.ajax({
-		url: "https://resumedataprotect-60022959849.catalystserverless.in/server/PasswordProtect/?passcode="+passcode+"&filename="+htmlfile, // Replace with the URL of the API you want to access
+		url: "https://resumedataprotect-715143879.development.catalystserverless.com/server/PasswordProtect/?passcode="+passcode+"&filename="+htmlfile, // Replace with the URL of the API you want to access
 		type: "POST",
 		crossDomain: true, // Set to true to enable CORS
 		xhrFields: {

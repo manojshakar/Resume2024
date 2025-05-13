@@ -26,10 +26,10 @@ import com.catalyst.advanced.CatalystAdvancedIOHandler;
 
 public class PasswordProtect implements CatalystAdvancedIOHandler {
 
-	private static String PASSWORD_TABLE_ID = "4603000000003790";
-	private static String DOMAINS_TABLE_ID = "4603000000003063";
-	private static Long MANOJ_FOLDER_ID = 4603000000004527l;
-	private static Long RAGHU_FOLDER_ID = 4603000000005018l;
+	private static String PASSWORD_TABLE_ID = "4768000000011075";
+	private static String DOMAINS_TABLE_ID = "4768000000016002";
+	private static Long MANOJ_FOLDER_ID = 4768000000011050l;
+	private static Long RAGHU_FOLDER_ID = 4768000000036007l;
 	private static final Logger LOGGER = Logger.getLogger(PasswordProtect.class.getName());
 
 	private ArrayList<String> getDomains(){
@@ -41,6 +41,7 @@ public class PasswordProtect implements CatalystAdvancedIOHandler {
 			do
 			{
 					pagedResp = ZCObject.getInstance().getTable(DOMAINS_TABLE_ID).getPagedRows(nextToken);
+					LOGGER.log(Level.INFO, "Paged Response: "+pagedResp);
 					//Specify the table name and fetch the paged response by passing nextToken and maxRows 
 					//Fetch the columns from the table by passing the column names 
 					for(ZCRowObject row : pagedResp.getRows()){ 
@@ -71,11 +72,12 @@ public class PasswordProtect implements CatalystAdvancedIOHandler {
 					//Specify the table name and fetch the paged response by passing nextToken and maxRows 
 					//Fetch the columns from the table by passing the column names 
 					for(ZCRowObject row : pagedResp.getRows()){ 
+						LOGGER.log(Level.INFO, ""+row);
 						String password =  (String) row.get("password");
 						String date = (String) row.get("expiry");
 				        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 				        LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
-				       
+				        LOGGER.log(Level.INFO, "DB's Expiry: "+dateTime + ", machine's current time: "+ LocalDateTime.now());
 				        if(dateTime.isAfter(LocalDateTime.now()) && password.equals(passcode)) {
 				        	return "Valid";
 				        }
@@ -178,7 +180,7 @@ public class PasswordProtect implements CatalystAdvancedIOHandler {
 			String checkStatus = validatePasscode(passcode);
 			if(checkStatus.equals("Valid")) {
 				Long file_id = MANOJ_FOLDER_ID;
-				if(origin.contains("raghu"))
+				if(origin.contains("raghu") || origin.contains("localhost"))
 					file_id = RAGHU_FOLDER_ID;
 				downloadFile(response, filename, file_id);
 			}else if(checkStatus.equals("Expired")){

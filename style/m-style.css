@@ -5,6 +5,32 @@
 	}
 }
 
+/* Media Query for Mobile Screens */
+@media (max-width: 768px) {
+    .explore-projects-container {
+        gap: 24px; /* Reduce gap for smaller screens */
+        margin: 128px auto 64px auto; /* Adjust margins */
+    }
+
+    .explore-projects-title {
+        font-size: 20px; /* Reduce font size for smaller screens */
+        line-height: 24px;
+    }
+
+    .project-links {
+        gap: 16px; /* Reduce gap between project cards */
+    }
+
+    .project-card {
+        width: 100%; /* Make the card responsive */
+        max-width: none; /* Remove max-width for smaller screens */
+    }
+
+    .project-card-title {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+}
+
 /*mobile styling*/
 /*@media only screen and (min-width: 300px) and (max-width: 414px) and (max-device-width : 414px) {*/
 /*(max-device-width : 414px) and (orientation: portrait)*/

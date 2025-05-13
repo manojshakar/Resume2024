@@ -57,7 +57,7 @@ function formValidate(){
 	if(htmlfile == "") htmlfile="index.html"
 
 	$.ajax({
-		url: "https://resumedataprotect-60022959849.catalystserverless.in/server/PasswordProtect/?passcode="+passcode+"&filename="+htmlfile, // Replace with the URL of the API you want to access
+		url: "https://resumedataprotect-715143879.development.catalystserverless.com/server/PasswordProtect/?passcode="+passcode+"&filename="+htmlfile, // Replace with the URL of the API you want to access
 		type: "POST",
 		crossDomain: true,
 		xhrFields: {
