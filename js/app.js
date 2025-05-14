@@ -3,12 +3,14 @@ var about_page = "about.html"
 var projects_page = "projects.html"
 
 var htmlLinks = [
-    { link: "casestudy1.html", description: "Creating Consistency: Designing a Unified Web Experience for Cookd Users" },
-    { link: "casestudy1 copy.html", description: "From Gaps to Greatness: A UX Transformation of Vajro’s Digital Experience" },
-    { link: "casestudy2.html", description: "2 During the time period before 2015, Zoho CRM offered only some restricted list of APIs in a non-standard way (i.e. no standard API URI structure, different type of responses" },
-    { link: "casestudy2 copy.html", description: "[COPY] 2 casestudy2 copy.html" },
-    { link: "casestudy3.html", description: "3 During the time period before 2015, Zoho CRM offered only some restricted list of APIs in a non-standard way (i.e. no standard API URI structure, different type of responses" },
-    { link: "casestudy3 copy.html", description: "[COPY] 3 During the time period before 2015, Zoho CRM offered only some restricted list of APIs in a non-standard way (i.e. no standard API URI structure, different type of responses" },
+    { link: "casestudy1.html", description: "From Concept to Clicks: Creating a Seamless Social Media Campaign Experience" },
+    { link: "casestudy2.html", description: "From Clutter to Clarity: A UX-Driven Redesign of the Journey Builder" },
+    { link: "casestudy3.html", description: "Designing for the Future: Complete Revamp of Spendflo's Settings Page" },
+    { link: "casestudy4.html", description: "From Concept to Conversation: Designing the Full Flo AI User Experience" },
+    { link: "casestudy5.html", description: "Cooking, Simplified: Designing an Intuitive Mobile Experience for Cookd" },
+    { link: "casestudy6.html", description: "Creating Consistency: Designing a Unified Web Experience for Cookd Users" },
+    { link: "casestudy7.html", description: "One System, One Experience: Building Vajro's Design System" },
+    { link: "casestudy8.html", description: "From Gaps to Greatness: A UX Transformation of Vajro's Digital Experience" }
 ];
 
 var password_form_content = `
