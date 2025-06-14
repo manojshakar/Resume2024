@@ -29,6 +29,49 @@
     .project-card-title {
         font-size: 14px; /* Adjust font size for smaller screens */
     }
+
+  /* Responsive project grid for mobile */
+  .projects-container {
+    padding: 0 8px;
+  }
+  .projects-row {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .project_i2 {
+    width: 100%;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    padding: 12px 0;
+  }
+  .pimg {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  .project_i2 .pimg{
+	height: unset;
+	padding: 24px 10% 0px 10%
+  }
+  .imgcontainer img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    border-radius: 8px;
+  }
+  .pdesc {
+    font-size: 15px;
+    text-align: left;
+    margin: 12px 0 8px 0;
+  }
+  .viewcasestudy {
+    font-size: 15px;
+    padding: 10px 0;
+  }
 }
 
 /*mobile styling*/
@@ -121,4 +164,16 @@
 	.password-form .passcode{
 		width: 70%;
 	}
+}
+
+@media (max-width: 480px) {
+  .projects-container {
+    padding: 0 2px;
+  }
+  .pdesc {
+    font-size: 14px;
+  }
+  .viewcasestudy {
+    font-size: 14px;
+  }
 }
